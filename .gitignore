@@ -4,6 +4,17 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### Lisätty .DS_Store -tiedostot ###
+.DS_Store
+src/.DS_Store
+src/main/.DS_Store
+src/main/java/.DS_Store
+src/main/java/hh/.DS_Store
+src/main/java/hh/sof03/.DS_Store
+src/main/java/hh/sof03/bookstore/.DS_Store
+src/main/resources/.DS_Store
+src/main/resources/templates/.DS_Store
+
 ### STS ###
 .apt_generated
 .classpath

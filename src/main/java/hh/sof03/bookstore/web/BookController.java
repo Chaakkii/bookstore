@@ -1,5 +1,7 @@
 package hh.sof03.bookstore.web;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,4 +49,37 @@ public class BookController {
         return "redirect:/booklist";
     }
 
+    @PostMapping("/edit/{id}")
+    public String editBook(@PathVariable Long id, Model model) {
+        Optional<Book> optionalBook = bookRepository.findById(id);
+
+        if (optionalBook.isPresent()) {
+            model.addAttribute("book", optionalBook.get());
+            return "edit";
+        } else {
+            return "redirect:/booklist";
+        }
+    }
+
+
+    @PostMapping("/update/{id}")
+    public String updateBook(@PathVariable Long id, @ModelAttribute("book") Book updatedBook) {
+        Book isBook = bookRepository.findById(id).orElse(null);
+
+        if (isBook != null) {
+            isBook.setTitle(updatedBook.getTitle());
+            isBook.setAuthor(updatedBook.getAuthor());
+            isBook.setIsbn(updatedBook.getIsbn());
+            isBook.setPublicationYear(updatedBook.getPublicationYear());
+            isBook.setPrice(updatedBook.getPrice());
+
+            bookRepository.save(isBook);
+        
+
+        return "redirect:/booklist";
+    } else {
+        return "redirect:/booklist";
+    }
+
+}
 }
