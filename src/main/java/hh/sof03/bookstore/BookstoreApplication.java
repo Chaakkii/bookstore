@@ -24,10 +24,10 @@ public class BookstoreApplication {
 
 			List<Book> books = new ArrayList<>();
 
-			books.add(new Book("Kissa", "Nainen", 1990, "101010A", 10.0));
-			books.add(new Book("Koira", "Mies", 1990, "101010B", 10.0));
-			books.add(new Book("Karhu", "Otso", 1991, "101010C", 11.0));
-			books.add(new Book("Orava", "Kurre", 1992, "101010D", 10.5));
+			books.add(new Book("Cristiano Ronaldo", "Guillem Balague", 2017, "9789174995381", 15.95));
+			books.add(new Book("Messi", "Luca Caioli", 2024, "9789524101578", 11.95));
+			books.add(new Book("Mbappé", "Cyril Collot", 2019, "9789523128293", 27.95));
+			books.add(new Book("Neymar", "Luca Caioli", 2016, "9789523123861", 14.95));
 
 			bookRepository.saveAll(books);
 			
