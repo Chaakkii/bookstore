@@ -7,7 +7,7 @@
 
 </head>
 <body>
-    <h1>Books</h1>
+    <h1>Booklist</h1>
 
     <table class="table">
         <tr>
@@ -25,26 +25,29 @@
             <td th:text="${book.isbn}">isbn</td>
             <td th:text="${book.publicationYear}">year</td>
             <td th:text="${book.price}">price</td>
-
+            
             <td>
-               
-                <form action="/delete/{id}" method="post" th:action="@{/delete/{id}(id=${book.id})}">
-                <button class="btn btn-danger" type="submit">Delete</button>
-                </form>
+           
+
+                <div class="btn-group">
+                    <form action="/delete/{id}" method="post" th:action="@{/delete/{id}(id=${book.id})}">
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+        
+                    <form action="/edit/{id}" method="post" th:action="@{/edit/{id}(id=${book.id})}">
+                        <button class="btn btn-primary" type="submit">Edit</button>
+                    </form>
+                </div>
                 
-                
-                
-                <form action="/edit/{id}" method="post" th:action="@{/edit/{id}(id=${book.id})}">
-                <button class="btn btn-primary" type="submit">Edit</button>
-                </form>    
+                 
                 
             </td>
         </tr>
     </table>
+
+
     <button class="btn btn-success" onclick="location.href='/addbook'">Add Book</button>
 
-
-        
    
 
 </body>

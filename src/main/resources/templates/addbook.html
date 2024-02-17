@@ -3,22 +3,36 @@
 <head>
     <title>Book form</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-	<h1>Book</h1>
-	<form method="post" action="#" th:action="@{/add}"  th:object= ${book} >
-	<p>Author: <input type="text" th:field="${book.author}" /></p>
-	<p>Title: <input type="text" th:field="${book.title}" /></p>
-    <p>ISBN: <input type="text" th:field="${book.isbn}" /></p>
-    <p>Year: <input type="text" th:field="${book.publicationYear}" /></p>
-    <p>Price: <input type="text" th:field="${book.price}" /></p>
-	
-    
-    <button type="submit">Add Book</button>
+    <h1>Book</h1>
+    <form method="post" action="#" th:action="@{/add}" th:object="${book}">
+        
+        <div>
+        <label for="author">Author:</label>
+        <input type="text" th:field="${book.author}" class="form-control" />
+        </div>
 
-	
-	
-	</form>
-    
+        <div>
+            <label for="title">Title</label>
+            <input type="text" th:field="${book.title}" class="form-control" />
+        </div>
+        <div>
+            <label for="isbn">Isbn</label>
+            <input type="text" th:field="${book.isbn}" class="form-control" />
+        </div>
+        <div>
+            <label for ="publicationYear">publicationYear</label>
+            <input type="text" th:field="${book.publicationYear}" class="form-control" />
+        </div>
+        <div>
+            <label for= "price">Price</label>
+            <input type="text" th:field="${book.price}" class="form-control" />
+        </div>
+        
+
+        <button class="btn btn-success" value="submit">Add Book</button>
+    </form>
 </body>
 </html>

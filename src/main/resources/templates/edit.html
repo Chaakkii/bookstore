@@ -2,7 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Book edit</title>
+    <h1>Book Editor</h1>
+    <p>Edit the book and press Update</p>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
 </head>
 <body>
     <form action="@{/update/{id}(id=${book.id})}" method="post" th:action="@{/update/{id}(id=${book.id})}" th:object="${book}">
@@ -11,30 +15,31 @@
 
         <div>
             <label for="author">Author:</label>
-            <input type="text" id="author" name="author" th:value="${book.author}" />
+            <input type="text" id="author" name="author" th:value="${book.author}" class="form-control" />
         </div>
 
         <div>
             <label for="title">Title:</label>
-            <input type="text" id="title" name="title" th:value="${book.title}" />
+            <input type="text" id="title" name="title" th:value="${book.title}" class="form-control"/>
         </div>
 
         <div>
             <label for="isbn">ISBN:</label>
-            <input type="text" id="isbn" name="isbn" th:value="${book.isbn}" />
+            <input type="text" id="isbn" name="isbn" th:value="${book.isbn}" class="form-control"/>
         </div>
 
         <div>
             <label for="publicationYear">Year:</label>
-            <input type="text" id="publicationYear" name="publicationYear" th:value="${book.publicationYear}" />
+            <input type="text" id="publicationYear" name="publicationYear" th:value="${book.publicationYear}" class="form-control"/>
         </div>
 
         <div>
             <label for="price">Price:</label>
-            <input type="text" id="price" name="price" th:value="${book.price}" />
+            <input type="text" id="price" name="price" th:value="${book.price}"class="form-control" />
         </div>
 
-        <button type="submit">Update</button>
+        <button class ="btn btn-success" type="submit">Update</button>
+       
     </form>
     
 </body>
