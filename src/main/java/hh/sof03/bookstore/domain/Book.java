@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,6 +24,10 @@ public class Book {
     @Column(name = "publication_year")
     private int publicationYear;
     private double price;
+
+    @ManyToOne
+    @JoinColumn(name = "categoryid")
+    private Category category;
     
     public Long getId() {
         return id;
@@ -57,12 +63,13 @@ public class Book {
     public void setPrice(double price) {
         this.price = price;
     }
-    public Book(String title, String author, int publicationYear, String isbn, double price) {
+    public Book(String title, String author, int publicationYear, String isbn, double price, Category category) {
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
         this.isbn = isbn;
         this.price = price;
+        this.category = category;
     }
 
     public Book() {
@@ -71,19 +78,25 @@ public class Book {
         this.publicationYear = 0;
         this.isbn = null;
         this.price = 0;
+        this.category = null;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override
     public String toString() {
-        return "Book [id=" + id + ", author=" + author + ", isbn=" + isbn + ", title=" + title + ", publicationYear="
-                + publicationYear + ", price=" + price + "]";
+        if (this.category != null)
+            return "Book [id=" + id + ", author=" + author + ", isbn=" + isbn + ", title=" + title + ", publicationYear="
+                + publicationYear + ", price=" + price + " category =" + this.getCategory() + "]";
+        else 
+            return "Book [id=" + id + ", author=" + author + ", isbn=" + isbn + ", title=" + title + ", publicationYear="
+        + publicationYear + ", price=" + price + "]";
     }
- 
-
-    
-
-
-    
-
     
 }

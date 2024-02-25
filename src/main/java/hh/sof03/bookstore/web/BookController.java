@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import hh.sof03.bookstore.domain.Book;
 import hh.sof03.bookstore.domain.BookRepository;
+import hh.sof03.bookstore.domain.CategoryRepository;
 
 
 @Controller
@@ -21,6 +22,8 @@ public class BookController {
 
     @Autowired
     private BookRepository bookRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
    
     @GetMapping("/booklist")
     public String getIndex(Model model) {
@@ -34,6 +37,7 @@ public class BookController {
 	@GetMapping("/addbook")
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
+        model.addAttribute("categories", categoryRepository.findAll());
 		return "addbook";
 	}
 

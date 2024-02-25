@@ -30,6 +30,14 @@
             <label for= "price">Price</label>
             <input type="text" th:field="${book.price}" class="form-control" />
         </div>
+
+        <div>
+            <label for="category">Category:</label>
+            <select id="category" name="category">
+                <option th:each="category : ${categories}" th:value="${category.getCategoryid()}" th:text="${category.getName()}"></option>
+            </select>
+            
+        </div>
         
 
         <button class="btn btn-success" value="submit">Add Book</button>
