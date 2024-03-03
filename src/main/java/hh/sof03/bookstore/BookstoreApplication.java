@@ -2,7 +2,10 @@ package hh.sof03.bookstore;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
 
+
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,6 +18,8 @@ import hh.sof03.bookstore.domain.CategoryRepository;
 @SpringBootApplication
 public class BookstoreApplication {
 
+	private static final Logger log = LoggerFactory.getLogger(BookstoreApplication.class);
+
 	public static void main(String[] args) {
 		SpringApplication.run(BookstoreApplication.class, args);
 	}
@@ -22,6 +27,8 @@ public class BookstoreApplication {
 	@Bean
 	public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository categoryRepository) {
 		return (args) -> {
+
+			log.info("Save some categories");
 
 			Category cat1 = new Category("Comic");
 			categoryRepository.save(cat1);
@@ -33,6 +40,7 @@ public class BookstoreApplication {
 			categoryRepository.save(cat4);
 
 			List<Category> categories = new ArrayList<>();
+			
 			categories.add(cat1);
 			categories.add(cat2);
 			categories.add(cat3);
@@ -49,7 +57,18 @@ public class BookstoreApplication {
 
 			bookRepository.saveAll(books);
 
-		};
+			log.info("Fetch all the books");
+			for (Book book : bookRepository.findAll()) {
+				log.info(book.toString());
+			}
 
-	}
+			log.info("Fetch all the categories");
+			for (Category category : categoryRepository.findAll()) {
+				log.info(category.toString());
+			}
+
+
+
+	};
+}
 }
