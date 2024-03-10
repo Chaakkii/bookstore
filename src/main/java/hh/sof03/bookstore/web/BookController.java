@@ -3,6 +3,7 @@ package hh.sof03.bookstore.web;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,13 +48,14 @@ public class BookController {
         return "redirect:/booklist";
     }
 
-    @PostMapping("/delete/{id}")
-    public String deleteBook(@PathVariable Long id) {
+    @GetMapping("/delete/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public String deleteBook(@PathVariable Long id, Model model) {
         bookRepository.deleteById(id);
         return "redirect:/booklist";
     }
 
-    @PostMapping("/edit/{id}")
+    @GetMapping("/edit/{id}")
     public String editBook(@PathVariable Long id, Model model) {
         Optional<Book> optionalBook = bookRepository.findById(id);
 
@@ -66,7 +68,7 @@ public class BookController {
     }
 
 
-    @PostMapping("/update/{id}")
+    @GetMapping("/update/{id}")
     public String updateBook(@PathVariable Long id, @ModelAttribute("book") Book updatedBook) {
         Book isBook = bookRepository.findById(id).orElse(null);
 
@@ -85,5 +87,10 @@ public class BookController {
         return "redirect:/booklist";
     }
 
+ 
 }
+   @GetMapping("/login")
+    public String loginForm() {
+        return "login";
+    }
 }

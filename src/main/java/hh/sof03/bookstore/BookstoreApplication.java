@@ -10,10 +10,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+
 import hh.sof03.bookstore.domain.Book;
 import hh.sof03.bookstore.domain.BookRepository;
 import hh.sof03.bookstore.domain.Category;
 import hh.sof03.bookstore.domain.CategoryRepository;
+import hh.sof03.bookstore.domain.User;
+import hh.sof03.bookstore.domain.UserRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -25,7 +29,7 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository categoryRepository) {
+	public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository categoryRepository, UserRepository userRepository) {
 		return (args) -> {
 
 			log.info("Save some categories");
@@ -56,6 +60,11 @@ public class BookstoreApplication {
 			books.add(new Book("Neymar", "Luca Caioli", 2016, "9789523123861", 14.95, cat4));
 
 			bookRepository.saveAll(books);
+
+			User user1 = new User("user", "$2a$10$6ai7uhmAWvAKie5Z9ikqk.Ov17jUTZ/ihxFBR3iYp53/Z1oKo/lX2", "USER");
+			User user2 = new User("admin", "$2a$10$E5gE1uCPwFgRxJp8Z0TAh.H7NVRGAMY/DkwkVMCJYZPzwRFDkXcne", "ADMIN");
+			userRepository.save(user1);
+			userRepository.save(user2);
 
 			log.info("Fetch all the books");
 			for (Book book : bookRepository.findAll()) {
