@@ -8,20 +8,22 @@
 </head>
 <body>
   
-    <div class="col-md-4">
-        <h1>Booklist</h1>
+    <div class="row justify-content-between">
+        <div class="col-md-4">
+            <h1>Booklist 📚</h1>
+        </div>
+    
+        <div class="col-md-4">
+            <h1>Welcome <span sec:authentication="name"></span><a>😏</a></h1>
+        </div>
+    
+        <div class="col-auto">
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Sign out" class="btn btn-xs btn-danger btn-lg"/>
+            </form>
+        </div>
     </div>
-
-    <div class="col-md-4">
-        <h3>Welcome <span sec:authentication="name"></span></h3>
-    </div>
-
-    <div class="col-md-4">
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign out" class="btn btn-sm btn-danger"/>
-
-    </form>
-    </div>
+    
 
 
     <table class="table table-striped">
@@ -32,8 +34,8 @@
             <th>Year</th>
             <th>Price</th>
             <th>Category</th>
-            <th>Modify</th>
-            
+            <th>Edit</th>
+            <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
         </tr>
 
         <tr th:each="book : ${books}">
@@ -43,15 +45,11 @@
             <td th:text="${book.publicationYear}">year</td>
             <td th:text="${book.price}">price</td>
             <td th:text="${book.category} ? ${book.category.name} :'' ">category</td>
-           
+            <td> <a th:href="@{/edit/{id}(id=${book.id})}" class="btn btn-primary">Edit</a></td>
                 <td sec:authorize="hasAuthority('ADMIN')">
-                    <a th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-xs btn-danger">Delete</a></td>
-                    
+                    <a th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-xs btn-danger">Delete</a>
                 </td>
-                <td>
-                 
-                <a th:href="@{/edit/{id}(id=${book.id})}" class="btn btn-primary">Edit</a>
-            </td>
+                
         </tr>
     </table>
 

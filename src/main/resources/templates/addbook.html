@@ -6,7 +6,7 @@
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-    <h1>Book</h1>
+    <h1>New Book</h1>
     <form method="post" action="#" th:action="@{/add}" th:object="${book}">
         
         <div>
@@ -23,7 +23,7 @@
             <input type="text" th:field="${book.isbn}" class="form-control" />
         </div>
         <div>
-            <label for ="publicationYear">publicationYear</label>
+            <label for ="publicationYear">Year</label>
             <input type="text" th:field="${book.publicationYear}" class="form-control" />
         </div>
         <div>
@@ -38,9 +38,16 @@
             </select>
             
         </div>
-        
-
+        <div class ="row">
+            <div class = "col text-right">
         <button class="btn btn-success" value="submit">Add Book</button>
+        </div>
+
+        <div class = "col-auto">
+            <a href="/booklist" class="btn btn-primary">Back to Book List</a>
+
+        </div>
     </form>
+  
 </body>
 </html>

@@ -68,7 +68,7 @@ public class BookController {
     }
 
 
-    @GetMapping("/update/{id}")
+    @PostMapping("/update/{id}")
     public String updateBook(@PathVariable Long id, @ModelAttribute("book") Book updatedBook) {
         Book isBook = bookRepository.findById(id).orElse(null);
 
